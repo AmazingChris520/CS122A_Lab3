@@ -7,7 +7,7 @@
 
 %.bit: src/%.sv
 	yosys -p "synth_ecp5 -json build/$*.json" $^
-	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json build/$*.json --textcfg build/$*.cfg --lpf $*.lpf --freq 65
+	nextpnr-ecp5 --25k --package CABGA256 --speed 6 --json build/$*.json --textcfg build/$*.cfg --lpf $*.lpf --freq 65 --lpf-allow-unconstrained
 	ecppack --svf build/$*.svf build/$*.cfg build/$@
 	
 %.bin: src/%.sv
